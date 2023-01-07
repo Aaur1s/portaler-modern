@@ -30,6 +30,5 @@ yarn-error.log*
 
 out
 serverlogs
-public
 .cache/
 /install/
