@@ -8,7 +8,7 @@
 
 This guide was written for Ubuntu 20.04, so I suggest you to use it.
 
-## Steps for both local and public versions
+## Installation
 
 Register at github.com and get a github access token. You can learn how to get it here: [Creating a Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
 
@@ -69,165 +69,6 @@ Install all yarn dependencies:
 cd /usr/local/etc/docker-portaler/portaler-core
 yarn install
 ```
-
-Now you need to decide if you are going to use it locally or publicly. Local version has no auth and is accessible only from your local network. Public version has discord OAuth and can be accessed by anyone with the right role on your discord server. While you can technically make the local version accessible from the internet that is not advised and will not be covered by this guide.
-
-You don't need to do both options so pick only the one you need.
-
-## Option 1 - Steps for local version
-
-Build shared modules:
-
-```Shell
-yarn build:shared
-```
-
-Edit `docker-compose.yml` and `.env.example`:
-
-```Shell
-cd /usr/local/etc/docker-portaler/portaler-core/docker
-```
-
-You can use any text editor you like. If you are using Debian you will most likely have `Vim` and `nano` installed. If you've never used `Vim` before, I suggest you use `nano` instead.
-
-If you don't have anything but `Vim` installed - you can either use google-fu and learn how to use it or just `apt-get install -y nano` to have `nano` installed
-
-```Shell
-cp .env.example.example .env.example.example.backup
-nano .env.example.example
-```
-
-Edit those values:
-
-**ACCESS_TOKEN=** Your github access token you've created in the beginning.
-
-Uncomment **DISABLE_AUTH=true** (that means delete the # before this line)
-
-Leave everything else as is.
-
-`ctrl-x` to exit the editor, don't forget to save your changes:
-
-```Shell
-nano docker-compose.yml
-```
-
-Modify it to be like this:
-
-```yml
-version: '3.7'
-
-services:
-  pgdb:
-    image: postgres:13-alpine
-    env_file:
-      - .env.example.example
-    restart: unless-stopped
-    volumes:
-      - db_data:/var/lib/postgresql/data
-    networks:
-      - portaler
-  rediscache:
-    image: bitnami/redis:6.0
-    env_file:
-      - .env.example.example
-    restart: unless-stopped
-    networks:
-      - portaler
-  api_server:
-    image: aut1sto/portaler:beta
-    env_file:
-      - .env.example.example
-    restart: unless-stopped
-    ports:
-      - '127.0.0.1:7777:4242'
-    depends_on:
-      - pgdb
-      - rediscache
-    networks:
-      - portaler
-  bin_etl:
-    image: aut1sto/portaler-etl:beta
-    env_file:
-      - .env.example.example
-    restart: unless-stopped
-    depends_on:
-      - pgdb
-      - rediscache
-      - api_server
-    networks:
-      - portaler
-
-networks:
-  portaler:
-    driver: 'bridge'
-
-volumes:
-  db_data: {}
-```
-
-`ctrl-x` to exit, don't forget to save your changes.
-
-When you are done editing the files - start the containers:
-
-```Shell
-docker-compose up -d
-```
-
-If you realized that you've done something wrong you can simply edit `.env.example` or `docker-compose.yml` and `docker-compose up -d` again.
-
-After the process is done wait for a couple of minutes and check that all containers are up and running:
-
-```Shell
-docker ps -a
-```
-
-In this list look for **container id** of the container with bin_etl (most likely will be the first one in the list) and restart it. That should populate the DB with zone info.
-
-```Shell
-docker restart your_bin_etl_containerid
-docker exec your_rediscache_containerid redis-cli -a redis flushall
-docker restart your_api_server_containerid
-```
-
-Switch to the folder containing frontend files:
-
-```Shell
-cd /usr/local/etc/docker-portaler/portaler-core/packages/frontend
-```
-
-Rename `.env.example` to `.env`:
-
-```Shell
-mv .env.example.example .env.example
-```
-
-Install pm2 and make it autostart your webserver:
-
-```Shell
-npm install pm2 -g
-pm2 start --name=portaler npm -- start
-pm2 startup
-pm2 save
-```
-
-Wait some time for the webserver to start. Now you can open your browser and go to http://yourserverip:3000 to use Portaler.
-
-### Windows Troubleshooting
-
-for the local version on windows double check that
-
-1. you have both python 2 and python 3. and that they are in the path.
-   1.1 python2 should open python 2.7 and python should open python 3.whatever
-2. make sure you are running all yarn and npm commands in node v 14.20.1 (latest version of node 14)
-   on windows that means that you can use the nvm utility to make sure you are utilizing the correct version
-3. utilize admin powershell for you're first instalation / setup
-4. if after `docker-compose up -d` you do not have a instance of bin-etl running then make sure you were in the /docker/ directory of the project
-
-
-
-
-
-## Option 2 - Steps for public version
 
 ### Explanation about domain names structure
 
@@ -387,7 +228,7 @@ On the OAuth2 page press "Add Redirect" and put there https://YOURHOSTDOMAIN:443
 
 You will need **ClientID**, **ClientSecret**, **PublicKey** from the "General Information" page and **Token** from the "Bot" page for the next step.
 
-Now that you have those values you can set-up your docker containers:
+Now that you have those values you can set up your docker containers:
 
 ```Shell
 cd /usr/local/etc/docker-portaler/portaler-core/docker
@@ -397,8 +238,6 @@ nano .env.example.example
 You need to edit those values:
 
 **HOST=** to YOURHOSTDOMAIN (ex. myserver.com or yoursubdomain.myserver.com)
-
-**ADMIN_KEY=** to a admin key, only for devs but don't leave it 1234.
 
 **ACCESS_TOKEN=** to your github access token you've created in the beginning.
 
@@ -412,9 +251,9 @@ You need to edit those values:
 
 **DISCORD_SECRET_TOKEN**= ClientSecret from "General Information" page.
 
-**DISCORD_ROLE**= Name of role that will be created when bot join your server. If you want to attach bot to existing role type name of role that you want to attach here.
-
 **DISCORD_SERVER_ID**= ID of your discord server, only for this server ID auth will work.
+
+**DISCORD_ROLE**= Name of role that will be created when bot join your server. If you want to attach bot to existing role type name of role that you want to attach here.
 
 Leave everything else as is.
 
@@ -430,24 +269,15 @@ docker-compose up -d
 
 If you realized that you've done something wrong you can simply edit `.env.example` or `docker-compose.yml` and `docker-compose up -d` again.
 
-After the process is done wait for a couple of minutes and check that all containers are up and running:
-
+After the process is done restart internal api:
 ```Shell
-docker ps -a
-```
-
-In this list look for **container id** of the container with bin_etl (most likely will be the first one in the list) and restart it. That should populate the DB with zone info.
-
-```Shell
-docker restart your_bin_etl_containerid
-docker exec your_rediscache_containerid redis-cli -a redis flushall
-docker restart your_api_server_containerid
+docker exec *container_name* sh ./restart_api.sh
 ```
 
 Now you can invite your bot to your server:
 
 1) You can open link https://YOURHOSTDOMAIN/api/bot in browser, and it will redirect you to bot invite page.
-2) Or you can just generate link yourself, its up to you ofc.
+2) Or you can just generate link yourself, it's up to you ofc.
 
 The bot should've created a new role called **portaler** or whatever you've set in your `.env.example.` Grant this role to yourself.
 

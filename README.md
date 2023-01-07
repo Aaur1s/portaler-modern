@@ -1,13 +1,16 @@
 
 # Portaler is alive!
 
+
 <p align="center">
-  <img alt="Portaler logo" width="512px" height="512px" src="https://github.com/aut1sto/portaler-modern/tree/stable-ts/assets/logo/logo-512x512.png" />
+<a href="./assets/logo/portaler-splash.png" target="_blank" rel="noopener nofollow noreferrer">
+  <img src="./assets/logo/portaler-splash.png" alt="" />
+</a>
 </p>
 
 This repo is Modern Portaler repo of developer from Portaler Community.
 
-Mist Walkers from Portaler Community discord costantly(thx to them) populates public avalon map, to login you need to get Member role in Portaler Community discord server:
+Mist Walkers from Portaler Community discord constantly(thx to them) populates public avalon map, to login you need to get Member role in Portaler Community discord server:
 https://discord.gg/SRJKjaVPxj
 
 ----
@@ -17,6 +20,7 @@ https://discord.gg/SRJKjaVPxj
 - [What it is](#what-it-is)
 - [Running](#running)
   - [Self-hosting Guide](./docs/selfhosting.md)
+  - [Patreon](https://www.patreon.com/portaler/membership)
 
 ## What it is
 
@@ -25,8 +29,8 @@ Portaler is a mapping tool for Avalonian Roads in Albion Online, that provides r
 The data we use to populate information is collected from [Albion Data Project](https://www.albion-online-data.com/).
 
 <p align="center">
-<a href="https://github.com/aut1sto/portaler-modern/tree/stable-ts/screenshot.png" target="_blank" rel="noopener nofollow noreferrer">
-  <img src="https://github.com/aut1sto/portaler-modern/tree/stable-ts/screenshot.png" alt="Screenshot" />
+<a href="./assets/screenshot.png" target="_blank" rel="noopener nofollow noreferrer">
+  <img src="./assets/screenshot.png" alt="" />
 </a>
 </p>
 
@@ -34,12 +38,4 @@ The data we use to populate information is collected from [Albion Data Project](
 
 There is a full [Self-hosting Guide here](./docs/selfhosting.md)
 
-Links to our DockerHub images:
-
-- [api-server](https://hub.docker.com/repository/docker/aut1sto/portaler)
-- [bin-etl](https://hub.docker.com/repository/docker/aut1sto/portaler-etl)
-- [discord-bot](https://hub.docker.com/repository/docker/mawburn/portaler-bot)
-
-## Development
-
-[Click here for Development Setup](./docs/devsetup.md)
+Or you can get your own instance from our [Patreon](https://www.patreon.com/portaler/membership)
