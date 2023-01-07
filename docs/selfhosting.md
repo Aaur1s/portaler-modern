@@ -61,12 +61,12 @@ cd /usr/local/etc/docker-portaler
 Clone the whole portaler repository:
 
 ```Shell
-git clone -b beta https://github.com/aut1sto/portaler-core
+git clone -b stable-ts https://github.com/aut1sto/portaler-modern
 ```
 Install all yarn dependencies:
 
 ```Shell
-cd /usr/local/etc/docker-portaler/portaler-core
+cd /usr/local/etc/docker-portaler/portaler-modern
 yarn install
 ```
 
@@ -80,7 +80,7 @@ For example, YOURHOSTDOMAIN for https://public.portaler.org/ is public.portaler.
 Now that we have this settled lets build our frontend:
 
 ```Shell
-cd /usr/local/etc/docker-portaler/portaler-core
+cd /usr/local/etc/docker-portaler/portaler-modern
 yarn build:front
 ```
 
@@ -113,7 +113,7 @@ server {
   }
 
   location / {
-    root   /usr/local/etc/docker-portaler/portaler-core/packages/frontend/build/;
+    root   /usr/local/etc/docker-portaler/portaler-modern/packages/frontend/build/;
     index  index.html index.htm;
     try_files $uri $uri/ /index.html;
   }
@@ -194,7 +194,7 @@ server {
   }
 
   location / {
-    root   /usr/local/etc/docker-portaler/portaler-core/packages/frontend/build/;
+    root   /usr/local/etc/docker-portaler/portaler-modern/packages/frontend/build/;
     index  index.html index.htm;
     try_files $uri $uri/ /index.html;
   }
@@ -231,8 +231,8 @@ You will need **ClientID**, **ClientSecret**, **PublicKey** from the "General In
 Now that you have those values you can set up your docker containers:
 
 ```Shell
-cd /usr/local/etc/docker-portaler/portaler-core/docker
-nano .env.example.example
+cd /usr/local/etc/docker-portaler/portaler-modern/docker
+nano .env.example
 ```
 
 You need to edit those values:
