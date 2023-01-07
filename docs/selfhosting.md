@@ -31,7 +31,7 @@ apt-get install -y curl
 Install nodejs/npm and yarn:
 
 ```Shell
-curl -sL https://deb.nodesource.com/setup_14.x | bash -
+curl -sL https://deb.nodesource.com/setup_18.x | bash -
 apt-get install -y nodejs
 npm install --global yarn
 ```

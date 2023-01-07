@@ -32,5 +32,4 @@ out
 serverlogs
 public
 .cache/
-/docker/
 /install/
