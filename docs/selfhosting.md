@@ -279,7 +279,7 @@ Now you can invite your bot to your server:
 1) You can open link https://YOURHOSTDOMAIN/api/bot in browser, and it will redirect you to bot invite page.
 2) Or you can just generate link yourself, it's up to you ofc.
 
-The bot should've created a new role called **portaler** or whatever you've set in your `.env.example.` Grant this role to yourself.
+The bot should've created a new role called **portaler** or whatever you've set in your `.env.example` Grant this role to yourself.
 
 Open your browser and go to https://YOURHOSTDOMAIN/ and login, portaler should work properly now, thx for using this guide!
 
