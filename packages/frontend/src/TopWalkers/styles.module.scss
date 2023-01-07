@@ -1,0 +1,19 @@
+table, .table-bordered {
+  border-collapse: collapse;
+  display: block;
+  height: 700px;
+  overflow-y: auto;
+}
+h2 {
+  text-align: center;
+}
+th {
+  border: 2px solid darkgray;
+  border-collapse: collapse;
+  background-color: #545454;
+}
+td {
+  background-color: #3d3d3d;
+  border: 2px solid darkgray;
+  border-collapse: collapse;
+}

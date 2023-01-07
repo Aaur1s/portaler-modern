@@ -1,0 +1,44 @@
+.mappingBar {
+  margin-bottom: 2rem;
+
+  .row {
+    margin: 1rem 0;
+  }
+}
+
+.portalSize {
+  padding: 0.75rem 0.75rem 1rem 0.75rem;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+
+  .sizePad {
+    padding-bottom: 0.5rem;
+  }
+}
+
+.flexColumn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.durationField {
+  width: 45%;
+
+  &.disabled {
+    opacity: 0.42;
+  }
+}
+
+.createBtn {
+  width: 100%;
+}
+
+.portalRadioGroup {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1.75rem 0;
+}
