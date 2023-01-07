@@ -1,0 +1,42 @@
+version: '3.7'
+
+services:
+  pgdb:
+    image: postgres:13-alpine
+    env_file:
+      - .env.example
+    restart: unless-stopped
+    ports:
+      - '5432:5432'
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - portaler
+  rediscache:
+    image: bitnami/redis:6.0
+    env_file:
+      - .env.example
+    restart: unless-stopped
+    ports:
+      - '6379:6379'
+    networks:
+      - portaler
+  portaler-ts-backend:
+    image: aut1sto/portaler-ts:latest
+    env_file:
+      - .env.example
+    restart: unless-stopped
+    ports:
+      - '7777:4242'
+    depends_on:
+      - pgdb
+      - rediscache
+    networks:
+      - portaler
+
+networks:
+  portaler:
+    driver: 'bridge'
+
+volumes:
+  db_data: {}
