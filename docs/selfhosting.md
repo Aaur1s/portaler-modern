@@ -255,7 +255,7 @@ You need to edit those values:
 
 **DISCORD_ROLE**= Name of role that will be created when bot join your server. If you want to attach bot to existing role type name of role that you want to attach here.
 
-**DB_HOST**= Normally it can be left to the default "localhost", but if you run into issues where the /api/auth/callback leads to a 404, you can put in the internal IP of the host running the instance. To find that out, you can run the command  ```ip addr```.
+**DB_HOST**= Normally it can be left to the default "localhost", but if you run into issues where the /api/auth/callback leads to a 404, you can put in the internal IP of the host running the instance. To find that out, you can run the command  ```hostname -I | cut -f1 -d' '```.
 
 Leave everything else as is.
 
