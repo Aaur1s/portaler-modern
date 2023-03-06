@@ -251,7 +251,7 @@ You need to edit those values:
 
 **DISCORD_SECRET_TOKEN**= ClientSecret from "General Information" page.
 
-**DISCORD_SERVER_ID**= ID of your discord server, only for this server ID auth will work.
+**DISCORD_SERVER_ID**= ID of your discord server, only for this server ID auth will work. You can find this under "Server settings > Widgets".
 
 **DISCORD_ROLE**= Name of role that will be created when bot join your server. If you want to attach bot to existing role type name of role that you want to attach here.
 
