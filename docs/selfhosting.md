@@ -77,6 +77,8 @@ To host Portaler publicly you ofc need domain. You can host portaler without sub
 In the steps to follow I'll be using "YOURHOSTDOMAIN" as substitutes for the domain and subdomain names you own. The following part of the guide assumes you know already how hosting a website and stuff like DNS work and realize what domain/subdomain names are.
 For example, YOURHOSTDOMAIN for https://public.portaler.org/ is public.portaler.org.
 
+If you are hosting this on your own machine via vmware/virtualbox or on a linux machine in your local network, "YOURHOSTDOMAIN" will be **localhost**.
+
 Now that we have this settled lets build our frontend:
 
 ```Shell
@@ -138,6 +140,8 @@ systemctl restart nginx
 You should be able to access the website now in your browser (nothing will work however without the backend)
 
 ### How to set up SSL
+
+(If you are hosting this on your own local machine, skip this step entirely, and jump all the way down to the discord bot section)
 
 After your portaler instance done you can setup SSL(https://) for your portaler.
 
@@ -237,7 +241,7 @@ nano .env.example
 
 You need to edit those values:
 
-**HOST=** to YOURHOSTDOMAIN (ex. myserver.com or yoursubdomain.myserver.com)
+**HOST=** to YOURHOSTDOMAIN (ex. myserver.com or yoursubdomain.myserver.com) 
 
 **ACCESS_TOKEN=** to your github access token you've created in the beginning.
 
