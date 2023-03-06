@@ -229,6 +229,7 @@ You will need to create an application using [discord developer portal](https://
 
 Go to the "Bot" page and press Add Bot, check **Presence Intent** and **ServerMember Intent**.
 On the OAuth2 page press "Add Redirect" and put there https://YOURHOSTDOMAIN:443/api/auth/callback. Don't forget to save changes.
+For the **localhost** version, your redirect url will instead be http://localhost:80/api/auth/callback.
 
 You will need **ClientID**, **ClientSecret**, **PublicKey** from the "General Information" page and **Token** from the "Bot" page for the next step.
 
