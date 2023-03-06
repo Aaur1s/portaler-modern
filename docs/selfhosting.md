@@ -271,7 +271,7 @@ docker-compose up -d
 
 If you realized that you've done something wrong you can simply edit `.env.example` or `docker-compose.yml` and `docker-compose up -d` again.
 
-After the process is done restart internal api:
+After the process is done restart internal api(for `*container name*`, the default is typically `docker_portaler-ts-backend_1`:
 ```Shell
 docker exec *container_name* sh ./restart_api.sh
 ```
