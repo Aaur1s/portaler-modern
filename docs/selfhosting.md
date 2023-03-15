@@ -77,6 +77,8 @@ To host Portaler publicly you ofc need domain. You can host portaler without sub
 In the steps to follow I'll be using "YOURHOSTDOMAIN" as substitutes for the domain and subdomain names you own. The following part of the guide assumes you know already how hosting a website and stuff like DNS work and realize what domain/subdomain names are.
 For example, YOURHOSTDOMAIN for https://public.portaler.org/ is public.portaler.org.
 
+If you are hosting this on your own machine via vmware/virtualbox or on a linux machine in your local network, "YOURHOSTDOMAIN" will be **localhost**.
+
 Now that we have this settled lets build our frontend:
 
 ```Shell
@@ -138,6 +140,8 @@ systemctl restart nginx
 You should be able to access the website now in your browser (nothing will work however without the backend)
 
 ### How to set up SSL
+
+(If you are hosting this on your own local machine, skip this step entirely, and jump all the way down to the discord bot section)
 
 After your portaler instance done you can setup SSL(https://) for your portaler.
 
@@ -225,6 +229,7 @@ You will need to create an application using [discord developer portal](https://
 
 Go to the "Bot" page and press Add Bot, check **Presence Intent** and **ServerMember Intent**.
 On the OAuth2 page press "Add Redirect" and put there https://YOURHOSTDOMAIN:443/api/auth/callback. Don't forget to save changes.
+For the **localhost** version, your redirect url will instead be http://localhost:80/api/auth/callback.
 
 You will need **ClientID**, **ClientSecret**, **PublicKey** from the "General Information" page and **Token** from the "Bot" page for the next step.
 
@@ -237,7 +242,7 @@ nano .env.example
 
 You need to edit those values:
 
-**HOST=** to YOURHOSTDOMAIN (ex. myserver.com or yoursubdomain.myserver.com)
+**HOST=** to YOURHOSTDOMAIN (ex. myserver.com or yoursubdomain.myserver.com) 
 
 **ACCESS_TOKEN=** to your github access token you've created in the beginning.
 
@@ -251,9 +256,11 @@ You need to edit those values:
 
 **DISCORD_SECRET_TOKEN**= ClientSecret from "General Information" page.
 
-**DISCORD_SERVER_ID**= ID of your discord server, only for this server ID auth will work.
+**DISCORD_SERVER_ID**= ID of your discord server, only for this server ID auth will work. You can find this under "Server settings > Widgets".
 
 **DISCORD_ROLE**= Name of role that will be created when bot join your server. If you want to attach bot to existing role type name of role that you want to attach here.
+
+**DB_HOST**= Normally it can be left to the default "localhost", but if you run into issues where the /api/auth/callback leads to a 404, you can put in the internal IP of the host running the instance. To find that out, you can run the command  ```hostname -I | cut -f1 -d' '```.
 
 Leave everything else as is.
 
@@ -269,7 +276,7 @@ docker-compose up -d
 
 If you realized that you've done something wrong you can simply edit `.env.example` or `docker-compose.yml` and `docker-compose up -d` again.
 
-After the process is done restart internal api:
+After the process is done restart internal api (for `*container name*`, the default is typically `docker_portaler-ts-backend_1`):
 ```Shell
 docker exec *container_name* sh ./restart_api.sh
 ```
