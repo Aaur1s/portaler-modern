@@ -11,6 +11,7 @@ This guide was written for Ubuntu 20.04, so I suggest you to use it.
 ## Installation
 
 Register at github.com and get a github access token. You can learn how to get it here: [Creating a Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
+Make sure you get a "Classic Token", this will not work with "Fine Grained". 
 
 You don't need to select any permissions for you token.
 
