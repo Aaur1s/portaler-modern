@@ -1,6 +1,5 @@
 
-# Portaler is alive!
-
+# Portaler is alive! (as project)
 
 <p align="center">
 <a href="./assets/logo/portaler-splash.png" target="_blank" rel="noopener nofollow noreferrer">
@@ -8,7 +7,9 @@
 </a>
 </p>
 
-This repo is Modern Portaler repo of developer from Portaler Community.
+This repo of modified mawburn's portaler, but it's no longer maintained as we rewriting Portaler app from zero and it'll be closed source.
+
+More info: Here will be link soon
 
 Mist Walkers from Portaler Community discord constantly(thx to them) populates public avalon map, to login you need to get Member role in Portaler Community discord server:
 https://discord.gg/SRJKjaVPxj
