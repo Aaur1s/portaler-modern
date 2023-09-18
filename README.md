@@ -1,5 +1,5 @@
 
-# Portaler is alive! (as project)
+# Portaler is alive! (as project, not this repo)
 
 <p align="center">
 <a href="./assets/logo/portaler-splash.png" target="_blank" rel="noopener nofollow noreferrer">
